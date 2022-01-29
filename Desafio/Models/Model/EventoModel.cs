@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Desafio.Models
+namespace Desafio.Models.Model
 {
-    public class GetEvento
+    public class EventoModel
     {
-        [Key]
         [Required(ErrorMessage = "Nome do Evento obrigatório")]
         public string Name { get; set; }
 

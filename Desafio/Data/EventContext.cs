@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Desafio.Models;
-using Microsoft.Extensions.Configuration;
+﻿using Desafio.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Pomelo.EntityFrameworkCore.MySql;
 
 namespace Desafio.Data
 {

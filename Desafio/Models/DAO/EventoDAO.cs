@@ -1,12 +1,12 @@
 ﻿using Desafio.Data;
-using Desafio.Models;
+using Desafio.Models.Entity;
+using Desafio.Models.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Desafio.Controllers.DAO
+namespace Desafio.Models.DAO
 {
     public class EventoDAO : Controller
     {
@@ -32,7 +32,7 @@ namespace Desafio.Controllers.DAO
             }
         }
 
-        public Evento BuscarEvento(GetEvento getEvento)
+        public Evento BuscarEvento(EventoModel getEvento)
         {
             Evento evento = _contextDAO.Events.Where(x => x.Name == getEvento.Name).Where(x => x.Date == getEvento.Date).Where(x => x.Locality == getEvento.Locality).FirstOrDefault();
 

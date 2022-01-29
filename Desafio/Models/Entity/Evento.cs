@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Desafio.Models
+namespace Desafio.Models.Entity
 {
     public class Evento
     {
@@ -22,7 +19,7 @@ namespace Desafio.Models
         [Required(ErrorMessage = "Data do Evento obrigatório")]
         public DateTime? Date { get; set; }
 
-        [Required(ErrorMessage = "Quantidade de Ticket do Evento obrigatório")]
+        [Required(ErrorMessage = "Quantidade de Tickets do Evento obrigatório")]
         public long Tickets { get; set; }
     }
 }

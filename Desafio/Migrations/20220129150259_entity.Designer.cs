@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio.Migrations
 {
     [DbContext(typeof(EventContext))]
-    [Migration("20220127045430_Entity")]
-    partial class Entity
+    [Migration("20220129150259_entity")]
+    partial class entity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,19 +19,22 @@ namespace Desafio.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.7");
 
-            modelBuilder.Entity("Desafio.Models.Evento", b =>
+            modelBuilder.Entity("Desafio.Models.Entity.Evento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
+                        .IsRequired()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Locality")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
@@ -46,14 +49,14 @@ namespace Desafio.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 1, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             Locality = "Fortaleza",
                             Name = "GeekHunter",
                             Tickets = 90L
                         });
                 });
 
-            modelBuilder.Entity("Desafio.Models.Participant", b =>
+            modelBuilder.Entity("Desafio.Models.Entity.Participant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,27 +66,16 @@ namespace Desafio.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("TaxNumber")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EventId");
-
                     b.ToTable("Participants");
-                });
-
-            modelBuilder.Entity("Desafio.Models.Participant", b =>
-                {
-                    b.HasOne("Desafio.Models.Evento", "Event")
-                        .WithMany()
-                        .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Event");
                 });
 #pragma warning restore 612, 618
         }
