@@ -9,65 +9,48 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio.Migrations
 {
     [DbContext(typeof(EventContext))]
-    [Migration("20220126012415_Participants")]
-    partial class Participants
+    [Migration("20220127045430_Entity")]
+    partial class Entity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.5");
+                .HasAnnotation("ProductVersion", "5.0.7");
 
-            modelBuilder.Entity("Desafio.Models.Event", b =>
+            modelBuilder.Entity("Desafio.Models.Evento", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Locality")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("int");
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<long>("Tickets")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.ToTable("Events");
-                });
 
-            modelBuilder.Entity("Desafio.Models.Owner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Mail")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("TaxNumber")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Owners");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Locality = "Fortaleza",
+                            Name = "GeekHunter",
+                            Tickets = 90L
+                        });
                 });
 
             modelBuilder.Entity("Desafio.Models.Participant", b =>
@@ -76,7 +59,7 @@ namespace Desafio.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -92,20 +75,13 @@ namespace Desafio.Migrations
                     b.ToTable("Participants");
                 });
 
-            modelBuilder.Entity("Desafio.Models.Event", b =>
-                {
-                    b.HasOne("Desafio.Models.Owner", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-
-                    b.Navigation("Owner");
-                });
-
             modelBuilder.Entity("Desafio.Models.Participant", b =>
                 {
-                    b.HasOne("Desafio.Models.Event", "Event")
+                    b.HasOne("Desafio.Models.Evento", "Event")
                         .WithMany()
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Event");
                 });

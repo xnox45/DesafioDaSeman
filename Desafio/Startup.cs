@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Desafio.Data;
 
 namespace Desafio
 {
@@ -29,6 +30,10 @@ namespace Desafio
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string mySqlConnection = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContextPool<EventContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -11,19 +11,21 @@ namespace Desafio.Data
 {
     public class EventContext : DbContext
     {
-        public DbSet<Event> Events { get; set; }
+        public EventContext(DbContextOptions<EventContext> options) : base(options)
+        {
+        }
 
-        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Evento> Events { get; set; }
 
         public DbSet<Participant> Participants { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //ServerVersion serverVersion = null;
-            optionsBuilder.UseMySql("server=localhost;user=root;password=Undethome45;port=3306;database=Desafio; persistsecurityinfo = True;",
-            new MySqlServerVersion(new Version()));
+            modelBuilder.Entity<Evento>().Property(p => p.Name).HasMaxLength(80);
 
-          // var a =  "server = localhost; userid = root; password = rajeesh123; database = WebAppMySql; persistsecurityinfo = True />";
+            modelBuilder.Entity<Evento>().HasData(
+                new Evento { Id = 1, Name = "GeekHunter", Locality = "Fortaleza", Date = DateTime.Now.Date, Tickets = 90 }
+                );
         }
     }
 }

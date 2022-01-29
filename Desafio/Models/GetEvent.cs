@@ -6,21 +6,16 @@ using System.Threading.Tasks;
 
 namespace Desafio.Models
 {
-    public class Event
+    public class GetEvento
     {
         [Key]
-        public int Id { get; set; }
-
-        public int OwnerId { get; set; }
-
-        public Owner Owner { get; set; }
-
+        [Required(ErrorMessage = "Nome do Evento obrigatório")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Local do Evento obrigatório")]
         public string Locality { get; set; }
 
-        public DateTime Date { get; set; }
-
-        public long Tickets { get; set; }
+        [Required(ErrorMessage = "Data do Evento obrigatório")]
+        public DateTime? Date { get; set; }
     }
 }
