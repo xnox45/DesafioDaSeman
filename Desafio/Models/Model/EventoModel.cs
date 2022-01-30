@@ -5,7 +5,7 @@ namespace Desafio.Models.Model
 {
     public class EventoModel
     {
-        [Required(ErrorMessage = "Nome do Evento obrigatório")]
+        
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Local do Evento obrigatório")]

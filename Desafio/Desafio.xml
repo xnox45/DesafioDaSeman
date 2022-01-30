@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Desafio</name>
+    </assembly>
+    <members>
+        <member name="M:Desafio.Controllers.EventController.InserirEvento(Desafio.Models.Entity.Evento)">
+             <summary>
+             Método de Adicionar um evento.
+             </summary>
+             <param name="evento">
+             <![CDATA[
+             Mínimo de 15 tickets para a criação do evento.<br/>
+             Data para criação de evento deve ser no mínimo um dia após o dia de hoje. <br />
+             Confira se o local já não está ocupado nessa data com o método BuscarEvento.<br />
+            ]]>
+             </param>
+             <returns>
+             Nome do evento adiconado para a data: Data do evento, no local: local do evento
+             </returns>
+        </member>
+        <member name="M:Desafio.Controllers.EventController.BuscarEvento(Desafio.Models.Model.EventoModel)">
+            <summary>
+            Método para buscar evento.
+            </summary>
+            <param name="evento">
+            <![CDATA[
+            Esse método só busca eventos a partir de 2020.</br>
+            Busca evento por local e data caso não haja nome.
+            ]]>
+            </param>
+            <returns>Evento com a quantidade de ingressos disponiveis.</returns>
+        </member>
+        <member name="M:Desafio.Controllers.EventController.CompraDeIngresso(Desafio.Models.Model.ParticipanteModel)">
+             <summary>
+             Método Para compra de ingresso
+             </summary>
+             <param name="model">
+             <![CDATA[
+             Esse método confere se tem ingressos disponíveis.<br/>
+             Confira se o CPF está realmente correto.<br/>
+             Informações do evento obrigatorio.<br/>
+            ]]>
+             </param>
+             <returns>
+             Ingresso comprado com o NOME e CPF do participante
+             </returns>
+        </member>
+        <member name="M:Desafio.Controllers.EventController.BuscaDeParticipante(Desafio.Models.Model.GetParticipant)">
+             <summary>
+             Metodo para busca de participantes
+             </summary>
+             <param name="participant">/// <![CDATA[
+             Com CPF conseguimos buscar todos os eventos que a pessoa participou.<br/>
+             Se informamos os dados do Evento conseguimos informar  se a pessoa participou do evento ou não.<br/>
+            ]]></param>
+             <returns></returns>
+        </member>
+    </members>
+</doc>

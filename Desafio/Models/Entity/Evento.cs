@@ -8,7 +8,7 @@ namespace Desafio.Models.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required(ErrorMessage = "Nome do Evento obrigatório")]
         public string Name { get; set; }
@@ -21,5 +21,8 @@ namespace Desafio.Models.Entity
 
         [Required(ErrorMessage = "Quantidade de Tickets do Evento obrigatório")]
         public long Tickets { get; set; }
+
+        [NotMappedAttribute]
+        public long TotalTickets { get; set; }
     }
 }
