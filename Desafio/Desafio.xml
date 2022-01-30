@@ -50,7 +50,7 @@
              <summary>
              Metodo para busca de participantes
              </summary>
-             <param name="participant">/// <![CDATA[
+             <param name="participant"><![CDATA[
              Com CPF conseguimos buscar todos os eventos que a pessoa participou.<br/>
              Se informamos os dados do Evento conseguimos informar  se a pessoa participou do evento ou não.<br/>
             ]]></param>

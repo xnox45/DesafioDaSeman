@@ -144,7 +144,7 @@ namespace Desafio.Controllers
                 evento = await _context.Events.Where(x => x.Name == model.Evento.Name).Where(x => x.Locality == model.Evento.Locality).Where(x => x.Date == model.Evento.Date).FirstOrDefaultAsync();
 
                 if (evento == null)
-                    return BadRequest("Evento inexistente");
+                    return BadRequest("Evento inexistente\nVerifique os dados do evento");
 
                 string msgValidate = new Validacao().ValidacaoComprarIngresso(model, evento, _context);
 
@@ -173,7 +173,7 @@ namespace Desafio.Controllers
         /// <summary>
         /// Metodo para busca de participantes
         /// </summary>
-        /// <param name="participant">/// <![CDATA[
+        /// <param name="participant"><![CDATA[
         /// Com CPF conseguimos buscar todos os eventos que a pessoa participou.<br/>
         /// Se informamos os dados do Evento conseguimos informar  se a pessoa participou do evento ou não.<br/>
         ///]]></param>
